@@ -1,6 +1,6 @@
 ## Data Warehousing with Snowflake
 
-### $\textcolor{red}{Creating\ Database\ and\ Data\ Containers\}$
+### $\textcolor{red}{Create\ and\ Insert\ Function}$
 
 * Make sure we have SYSADMIN Access
 * Navigate to Data -- Database ---> Create a Database and name it GARDEN_PLANTS
@@ -33,7 +33,7 @@ VALUES (1, 'S', 'Shallow', 'cm', 30, 45);
 ```
   ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/c92bbacd-8740-4c95-87ee-dcc1054f69c0)
 
-* INSERT Two more rows in to the table with below values
+* INSERT Two more rows into the table with the below values
 
 ```SQL
 USE WAREHOUSE COMPUTE_WH;
@@ -42,5 +42,25 @@ INSERT INTO ROOT_DEPTH (ROOT_DEPTH_ID, ROOT_DEPTH_CODE, ROOT_DEPTH_NAME, UNIT_OF
 VALUES (2, 'M', 'Medium', 'cm', 45, 60),(3, 'D', 'Deep', 'cm', 60, 90);
 ```
   ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/092598d7-cc0a-4f05-97ee-3e201d43eb35)
+
+### $\textcolor{red}{Loading\ csv\ file\ into\ Table Schema\}$
+
+* Create a new table "VEGETABLE_DETAILS" in the VEGGIES Schema
+```SQL
+create table garden_plants.veggies.vegetable_details
+(
+plant_name varchar(25)
+, root_depth_code varchar(1)    
+);
+```
+* Now navigate to the VEGETABLE_DETAILS table created and click on "LOAD DATA" in the top right corner.
+* Drag and Drop the CSV file into the pop-up and click on next
+* Then select the file format as CSV and skip-header as skip one line and Field optionality enclosed by double quotes.
+* The CSV File with 21 rows will be loaded into the table.
+
+  ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/30482dc9-e1a4-4ee8-bec2-09483e672cb9)
+
+  ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/146277de-ffe4-4d31-b129-589ea9fc0311)
+
 
 
