@@ -85,11 +85,13 @@ create file format garden_plants.veggies.COMMASEP_DBLQUOT_ONEHEADROW
 * Here is the link to the bucket: https://uni-lab-files.s3.us-west-2.amazonaws.com/
 * Now create a stage that points to an S3 bucket.
 * Navigate to UTIL_DB --> PUBLIC Schema --> On top right corner click on create --> Stages --> Amazon S3
-* Provide the stage name and URL in the pop-up and click on create.
+* Provide the stage name and URL in the pop-up and click on Create.
 
   ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/43f4822e-54fb-4757-bf9b-31c78d547e96)
 
+* View the files from the stage.
 
-* 
+   ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/10ee5795-c831-49af-b0ff-2415e44cbe66)
+
 
 
