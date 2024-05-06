@@ -62,5 +62,21 @@ plant_name varchar(25)
 
   ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/146277de-ffe4-4d31-b129-589ea9fc0311)
 
+* Create the below two file formats in the VEGGIES Schema
+
+```SQL
+create file format garden_plants.veggies.PIPECOLSEP_ONEHEADROW 
+    TYPE = 'CSV'
+    FIELD_DELIMITER = '|' 
+    SKIP_HEADER = 1 
+    ;
+
+create file format garden_plants.veggies.COMMASEP_DBLQUOT_ONEHEADROW 
+    TYPE = 'CSV'
+    SKIP_HEADER = 1 
+    FIELD_OPTIONALLY_ENCLOSED_BY = '"' 
+    ;
+```
+  ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/626a2c8b-e6af-435d-a7ac-7279b7cc4984)
 
 
