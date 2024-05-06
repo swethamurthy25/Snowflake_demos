@@ -103,4 +103,29 @@ file_format = ( format_name=GARDEN_PLANTS.VEGGIES.PIPECOLSEP_ONEHEADROW );
 ```
   ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/1b450fa2-3ecc-4b34-9c50-88c57eb60de1)
 
+### $\textcolor{red}{Create\ and\ Manage\ Sequences\}$
+
+* Create the Database Library_Card_Catalog and
+
+```SQL
+CREATE DATABASE LIBRARY_CARD_CATALOG COMMENT = 'DWW Lesson 9 ';
+USE DATABASE LIBRARY_CARD_CATALOG;
+
+CREATE OR REPLACE TABLE AUTHOR (
+   AUTHOR_UID NUMBER 
+  ,FIRST_NAME VARCHAR(50)
+  ,MIDDLE_NAME VARCHAR(50)
+  ,LAST_NAME VARCHAR(50)
+);
+
+INSERT INTO AUTHOR(AUTHOR_UID,FIRST_NAME,MIDDLE_NAME, LAST_NAME) 
+Values
+(1, 'Fiona', '','Macdonald')
+,(2, 'Gian','Paulo','Faleschini');
+
+SELECT * FROM AUTHOR;
+```
+  ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/be95c131-390e-40c1-a6a3-5a2b1d720447)
+
+  
 
