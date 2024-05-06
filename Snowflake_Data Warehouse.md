@@ -93,5 +93,14 @@ create file format garden_plants.veggies.COMMASEP_DBLQUOT_ONEHEADROW
 
    ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/10ee5795-c831-49af-b0ff-2415e44cbe66)
 
+* Loading file from S3 bucket into new table
+
+```SQL
+copy into vegetable_details_soil_type
+from @util_db.public.like_a_window_into_an_s3_bucket
+files = ( 'VEG_NAME_TO_SOIL_TYPE_PIPE.txt')
+file_format = ( format_name=GARDEN_PLANTS.VEGGIES.PIPECOLSEP_ONEHEADROW );
+```
+  ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/1b450fa2-3ecc-4b34-9c50-88c57eb60de1)
 
 
