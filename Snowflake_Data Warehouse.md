@@ -105,7 +105,7 @@ file_format = ( format_name=GARDEN_PLANTS.VEGGIES.PIPECOLSEP_ONEHEADROW );
 
 ### $\textcolor{red}{Create\ and\ Manage\ Sequences\}$
 
-* Create the Database Library_Card_Catalog and
+* Create the Database Library_Card_Catalog and Author Table
 
 ```SQL
 CREATE DATABASE LIBRARY_CARD_CATALOG COMMENT = 'DWW Lesson 9 ';
@@ -155,3 +155,42 @@ Values
 ,(SEQ_AUTHOR_UID.nextval, 'Jennifer', '','Clapp')
 ,(SEQ_AUTHOR_UID.nextval, 'Kathleen', '','Petelinsek');
 ```
+* Creating a 2nd Counter, a Book Table, and a Mapping Table
+```SQL
+USE DATABASE LIBRARY_CARD_CATALOG;
+
+CREATE OR REPLACE SEQUENCE "LIBRARY_CARD_CATALOG"."PUBLIC"."SEQ_BOOK_UID" 
+START 1 
+INCREMENT 1 
+COMMENT = 'Use this to fill in the BOOK_UID everytime you add a row';
+
+CREATE OR REPLACE TABLE BOOK
+( BOOK_UID NUMBER DEFAULT SEQ_BOOK_UID.nextval
+ ,TITLE VARCHAR(50)
+ ,YEAR_PUBLISHED NUMBER(4,0)
+);
+
+INSERT INTO BOOK(TITLE,YEAR_PUBLISHED)
+VALUES('Food',2001),('Food',2006),('Food',2008),('Food',2016),('Food',2015);
+
+// Create the relationships table- this is sometimes called a "Many-to-Many table"
+CREATE TABLE BOOK_TO_AUTHOR
+(  BOOK_UID NUMBER
+  ,AUTHOR_UID NUMBER
+);
+
+INSERT INTO BOOK_TO_AUTHOR(BOOK_UID,AUTHOR_UID)
+VALUES(1,1),(1,2),(2,3),(3,4),(4,5),(5,6);
+
+//Join 3 tables and validate now
+select * 
+from book_to_author ba 
+join author a on ba.author_uid = a.author_uid 
+join book b on b.book_uid=ba.book_uid; 
+```
+  ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/d579b6d1-b5ea-40d2-9091-4d2b2bd4511b)
+
+  ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/6886b9ce-1ea0-496e-b194-ade81330c8d0)
+
+
+  
