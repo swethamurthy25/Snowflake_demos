@@ -119,13 +119,23 @@ CREATE OR REPLACE TABLE AUTHOR (
 );
 
 INSERT INTO AUTHOR(AUTHOR_UID,FIRST_NAME,MIDDLE_NAME, LAST_NAME) 
-Values
-(1, 'Fiona', '','Macdonald')
-,(2, 'Gian','Paulo','Faleschini');
+Values(1, 'Fiona', '','Macdonald'),(2, 'Gian','Paulo','Faleschini');
 
 SELECT * FROM AUTHOR;
 ```
   ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/be95c131-390e-40c1-a6a3-5a2b1d720447)
 
+* Navigate to Library catalog db --> Public Schema --> On top right corner click on create --> Sequence
+* A pop-up will appear, create the sequence as below on the respective field. Then run the sequence.
   
+```SQL
+create sequence SEQ_AUTHOR_UID
+    start = 1
+    increment = 1
+    comment = 'Use this to fill in AUTHOR_ID';
+```
+
+ ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/b75eee4c-1324-4e1c-9f64-d76fcbe0bab9)
+
+
 
