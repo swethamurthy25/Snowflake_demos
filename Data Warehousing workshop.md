@@ -1,11 +1,11 @@
 ## Data Warehousing with Snowflake
 
-### $\textcolor{red}{Create\ and\ Insert\ Function}$
+### $\textcolor{red}{Basics\ with\ Database\ and\ Tables\}$
 
-* Make sure we have SYSADMIN Access
-* Navigate to Data -- Database ---> Create a Database and name it GARDEN_PLANTS
-* Drop the Public Schema
-* Create three new schemas in your GARDEN_PLANTS database. Name them VEGGIES, FRUITS, and FLOWERS.
+1. Make sure we have SYSADMIN Access
+2. Navigate to Data -- Database ---> Create a Database and name it GARDEN_PLANTS
+3. Drop the Public Schema
+4. Create three new schemas in your GARDEN_PLANTS database. Name them VEGGIES, FRUITS, and FLOWERS.
 
    ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/2dbdda34-6f52-4da6-b0f8-13223c578626)
 
