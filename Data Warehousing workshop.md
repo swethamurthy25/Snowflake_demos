@@ -336,12 +336,12 @@ SELECT RAW_STATUS:entities:hashtags[0].text
 FROM TWEET_INGEST
 WHERE RAW_STATUS:entities:hashtags[0].text is not null;
 
-//Perform a simple CAST on the created_at key
-//Add an ORDER BY clause to sort by the tweet's creation date
+//Perform a simple CAST on the created_at key- Add an ORDER BY clause to sort by the tweet's creation date
 SELECT RAW_STATUS:created_at::DATE
 FROM TWEET_INGEST
 ORDER BY RAW_STATUS:created_at::DATE;
-
+```
+```SQL
 //Flatten statements that return the whole hashtag entity
 SELECT value
 FROM TWEET_INGEST
@@ -358,7 +358,6 @@ FROM TWEET_INGEST
 ,LATERAL FLATTEN
 (input => RAW_STATUS:entities:hashtags);
 
-
 //Flatten and return just the hashtag text, CAST the text as VARCHAR
 SELECT value:text::VARCHAR
 FROM TWEET_INGEST
@@ -366,7 +365,6 @@ FROM TWEET_INGEST
 (input => RAW_STATUS:entities:hashtags);
 
 //Flatten and return just the hashtag text, CAST the text as VARCHAR
-// Use the AS command to name the column
 SELECT value:text::VARCHAR AS THE_HASHTAG
 FROM TWEET_INGEST
 ,LATERAL FLATTEN
