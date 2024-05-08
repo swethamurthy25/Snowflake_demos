@@ -241,3 +241,49 @@ SELECT
 FROM AUTHOR_INGEST_JSON;
 ```
  ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/a2475e45-6d06-4c3b-9765-5900302b0e90)
+
+* Load and Query Nested JSON - Nested Author and Book JSON data
+* Download the 'json_book_author_nested.json' data
+* Create an ingestion table in util_db.public schema
+* Upload the downloaded data "json_book_author_nested.json" into the table 'NESTED_INGEST_JSON' 
+
+```SQL
+CREATE OR REPLACE TABLE LIBRARY_CARD_CATALOG.PUBLIC.NESTED_INGEST_JSON 
+(
+  "RAW_NESTED_BOOK" VARIANT
+);
+COPY INTO LIBRARY_CARD_CATALOG.PUBLIC.NESTED_INGEST_JSON (RAW_NESTED_BOOK)
+FROM '@util_db.public.like_a_window_into_an_s3_bucket/json_book_author_nested.json'
+FILE_FORMAT = (FORMAT_NAME = LIBRARY_CARD_CATALOG.PUBLIC.JSON_FILE_FORMAT);
+```
+* Query the JSON file and validate the columns
+
+```SQL
+SELECT RAW_NESTED_BOOK
+FROM NESTED_INGEST_JSON;
+
+SELECT RAW_NESTED_BOOK:year_published
+FROM NESTED_INGEST_JSON;
+
+SELECT RAW_NESTED_BOOK:authors
+FROM NESTED_INGEST_JSON;
+
+//Use these example flatten commands to explore flattening the nested book and author data
+SELECT value:first_name
+FROM NESTED_INGEST_JSON
+,LATERAL FLATTEN(input => RAW_NESTED_BOOK:authors);
+
+SELECT value:first_name
+FROM NESTED_INGEST_JSON
+,table(flatten(RAW_NESTED_BOOK:authors));
+
+//Add a CAST command to the fields returned
+SELECT value:first_name::VARCHAR, value:last_name::VARCHAR
+FROM NESTED_INGEST_JSON
+,LATERAL FLATTEN(input => RAW_NESTED_BOOK:authors);
+
+//Assign new column  names to the columns using "AS"
+SELECT value:first_name::VARCHAR AS FIRST_NM
+, value:last_name::VARCHAR AS LAST_NM
+FROM NESTED_INGEST_JSON
+,LATERAL FLATTEN(input => RAW_NESTED_BOOK:authors);
