@@ -341,6 +341,8 @@ SELECT RAW_STATUS:created_at::DATE
 FROM TWEET_INGEST
 ORDER BY RAW_STATUS:created_at::DATE;
 ```
+   ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/ccfd610f-6225-476f-b5e8-9a3149a502d8)
+
 ```SQL
 //Flatten statements that return the whole hashtag entity
 SELECT value
@@ -378,5 +380,5 @@ FROM TWEET_INGEST
 ,LATERAL FLATTEN
 (input => RAW_STATUS:entities:hashtags);
  ```
-
+   ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/c60d886a-a677-4e3d-80b4-89440c870bff)
 
