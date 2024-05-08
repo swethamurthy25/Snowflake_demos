@@ -382,3 +382,16 @@ FROM TWEET_INGEST
  ```
    ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/c60d886a-a677-4e3d-80b4-89440c870bff)
 
+* Create a View of the Tweet Data Looking "Normalized"
+```SQL
+create or replace view SOCIAL_MEDIA_FLOODGATES.PUBLIC.HASHTAGS_NORMALIZED as
+(SELECT RAW_STATUS:user:id AS USER_ID
+,RAW_STATUS:id AS TWEET_ID
+,value:text::VARCHAR AS HASHTAG_TEXT
+FROM TWEET_INGEST
+,LATERAL FLATTEN
+(input => RAW_STATUS:entities:hashtags)
+);
+```
+
+
