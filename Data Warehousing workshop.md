@@ -192,5 +192,52 @@ join book b on b.book_uid=ba.book_uid;
 
   ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/6886b9ce-1ea0-496e-b194-ade81330c8d0)
 
+### $\textcolor{red}{Working\ with\ Semi Structured\ Data-\ JSON\}$
 
-  
+* Download the author_with_header.json file
+* In LIBRARY_CARD_CATALOG, create a table named AUTHOR_INGEST_JSON and create a file format
+* In the file format, set all values to FALSE by default, and set STRIP_OUER_ARRAY as TRUE as it ignores the square brackets
+  and load each author into a separate row.
+
+```SQL
+USE LIBRARY_CARD_CATALOG;
+
+CREATE TABLE LIBRARY_CARD_CATALOG.PUBLIC.AUTHOR_INGEST_JSON 
+(
+  RAW_AUTHOR VARIANT
+);
+
+CREATE FILE FORMAT LIBRARY_CARD_CATALOG.PUBLIC.JSON_FILE_FORMAT 
+TYPE = 'JSON' 
+COMPRESSION = 'AUTO' 
+ENABLE_OCTAL = FALSE
+ALLOW_DUPLICATE = FALSE 
+STRIP_OUTER_ARRAY = TRUE
+STRIP_NULL_VALUES = FALSE 
+IGNORE_UTF8_ERRORS = FALSE;
+```
+* Use a COPY INTO statement to push the data from the stage to the AUTHOR_INGEST_JSON Table
+
+```SQL
+COPY INTO LIBRARY_CARD_CATALOG.PUBLIC.AUTHOR_INGEST_JSON (RAW_AUTHOR)
+FROM '@util_db.public.like_a_window_into_an_s3_bucket/author_with_header.json'
+FILE_FORMAT = (FORMAT_NAME = LIBRARY_CARD_CATALOG.PUBLIC.JSON_FILE_FORMAT);
+
+SELECT raw_author FROM AUTHOR_INGEST_JSON;
+```
+  ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/58968ee0-1747-43d3-aeaf-4f22ccb264f6)
+
+* Query the JSON data
+
+```SQL
+select raw_author:AUTHOR_UID
+from author_ingest_json;
+
+SELECT 
+ raw_author:AUTHOR_UID
+,raw_author:FIRST_NAME::STRING as FIRST_NAME
+,raw_author:MIDDLE_NAME::STRING as MIDDLE_NAME
+,raw_author:LAST_NAME::STRING as LAST_NAME
+FROM AUTHOR_INGEST_JSON;
+```
+ ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/a2475e45-6d06-4c3b-9765-5900302b0e90)
