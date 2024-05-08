@@ -287,7 +287,7 @@ SELECT value:first_name::VARCHAR AS FIRST_NM
 , value:last_name::VARCHAR AS LAST_NM
 FROM NESTED_INGEST_JSON
 ,LATERAL FLATTEN(input => RAW_NESTED_BOOK:authors);
-
+```
 ### $\textcolor{red}{Use\ Case:\ Working\ with\ Semistructured\ Twitter\ data\}$
 JSON File: nutrition_tweets.json
 
@@ -327,7 +327,7 @@ FROM TWEET_INGEST;
 SELECT RAW_STATUS:entities:hashtags
 FROM TWEET_INGEST;
 
-//Explore looking at specific hashtags by adding bracketed numbers- This query returns just the first hashtag in each tweet
+//Explore looking at specific hashtags by adding bracketed numbers- Returns just the first hashtag in each tweet
 SELECT RAW_STATUS:entities:hashtags[0].text
 FROM TWEET_INGEST;
 
