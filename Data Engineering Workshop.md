@@ -49,7 +49,7 @@ FROM GAME_LOGS;
 ```
  ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/b5f2dec0-fb7e-44a0-9ad7-18b733692e00)
 
-* Create View named LOGS and parse the columns accordingly shown below.
+* Create a View named LOGS and parse the columns accordingly shown below.
 ```SQL
 CREATE OR REPLACE VIEW RAW.LOGS AS
 SELECT 
@@ -64,5 +64,5 @@ SELECT * FROM LOGS;
 ```
  ![image](https://github.com/swethamurthy25/Snowflake_demos/assets/112581595/6bc355ed-281c-4a99-8091-3fc3c7657cec)
 
-
+* 
 
